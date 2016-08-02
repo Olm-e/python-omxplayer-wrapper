@@ -57,9 +57,9 @@ class BusFinder(object):
         while not possible_pid_files:
             # filter is used here as glob doesn't support regexp :(
             is_pid_file = lambda path: path.endswith('.pid')
-            possible_pid_files = filter(is_pid_file,
-                                            glob('/tmp/omxplayerdbus.*'))
-            possible_pid_files.sort(key=lambda path: os.path.getmtime(path))
+            possible_pid_files = sorted(filter(is_pid_file,
+                                            glob('/tmp/omxplayerdbus.*')))
+            # possible_pid_files.sort(key=lambda path: os.path.getmtime(path))
             time.sleep(0.05)
 
         self.pidpath = possible_pid_files[-1]
